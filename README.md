@@ -1,6 +1,6 @@
 # sms-getter
 
-Gets sms
+Read sms messages for capacitor (Android only)
 
 ## Install
 
