@@ -9,13 +9,38 @@ npm install sms-getter
 npx cap sync
 ```
 
+## Usage
+
+```typescript
+import { SmsGetter } from 'sms-getter';
+
+async startWatchingSms() {
+    let permission = false;
+    try {
+      await SmsGetter.startWatch();
+      permission = true;
+      console.log('Started watching for incoming SMS');
+    } catch (error) {
+      permission = false;
+      console.error('Error starting SMS watch:', error);
+    }
+
+    if (permission) {
+      // Listen for SMS events
+      SmsGetter.addListener('smsReceived', (sms) => {
+        console.log(sms);
+      });
+    }
+  }
+```
+
 ## API
 
 <docgen-index>
 
-* [`startWatch()`](#startwatch)
-* [`addListener('smsReceived', ...)`](#addlistenersmsreceived-)
-* [Interfaces](#interfaces)
+- [`startWatch()`](#startwatch)
+- [`addListener('smsReceived', ...)`](#addlistenersmsreceived-)
+- [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -30,8 +55,7 @@ startWatch() => Promise<void>
 
 Starts the SMS receiver to watch for incoming SMS.
 
---------------------
-
+---
 
 ### addListener('smsReceived', ...)
 
@@ -48,11 +72,9 @@ Adds an event listener for the 'smsReceived' event.
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
---------------------
-
+---
 
 ### Interfaces
-
 
 #### PluginListenerHandle
 
